@@ -1,0 +1,57 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>MOVIE REVIEW-UserProfile</title>
+    </head>
+    <body>
+
+        <main></main>
+
+
+
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="">
+                        MOVIE REVIEW
+                    </a>
+
+<!--                    <a href="/logout" class="btn custom-btn d-lg-none ms-auto me-4">Logout</a>-->
+
+<!--                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                        <span class="navbar-toggler-icon"></span>-->
+<!--                    </button>-->
+
+                    <div class="collapse navbar-collapse" id="navbarNav" style="color:black;">
+                        <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="home">Home</a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link click-scroll" href="movie_list">Movies</a>
+                            </li>
+                             <li>
+                                 <a href="logout" class="btn custom-btn d-lg-block d-none">Logout</a>&nbsp;&nbsp;
+                             </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+              <div class="container-profile" style="align-items:center;justify-content:center;margin-left:400px;">
+                      <div class="profile-info">
+                        <h2>User Profile</h2>
+                         <p><strong>Username:</strong> {{ user.username }}</p><br>
+                        <p><strong>Email:</strong> {{ user.email }}</p><br>
+                        <p><strong>First Name:</strong> {{ user.first_name }}</p><br>
+                        <p><strong>Last Name:</strong> {{ user.last_name }}</p><br>
+                        <a href="{% url 'update_profile' %}" class="edit">Edit Profile</a>
+                      </div>
+              </div>
+    </body>
+</html>

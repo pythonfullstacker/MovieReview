@@ -1,0 +1,93 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Movie review</title>
+    </head>
+    <body style="background-color:#1877F2 ;">
+    <header>
+            <nav class="navbar navbar-expand-lg" style="margin-top:0;padding-top:0;">
+                <div class="container">
+                    <a class="navbar-brand" href="">
+                        LIST PAGE
+                    </a>
+<!--                     <a href="logout" class="btn custom-btn d-lg-none ms-auto me-4">Logout</a>-->
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                     <div class="collapse navbar-collapse" id="navbarNav" style="color:black;">
+                        <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                            <li class="nav-item">
+                                <a href="/home" style="color:white;margin-right:30px;">HOME</a>
+                            </li>
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link click-scroll" href="/movie_list"style="color:white;margin-right:30px;" >MOVIES</a>-->
+<!--                            </li>-->
+                            <li class="nav-item">
+                                <a href="/userprofile" style="color:white;margin-right:30px;">PROFILE</a>
+                            </li>
+                            <li>
+                                <a href="/logout" style="color:white;margin-right:30px;">LOGOUT</a>
+                            </li>
+                        </ul>
+
+                     </div>
+                </div>
+            </nav>
+        </header>
+            <div class="container-fluid" style="background-color:#111213;padding-left:40px;margin-top:120px;">
+                 <h2 style="color:white;">MOVIE STORE</h2>
+
+                {% if movies %}
+                  <form action="{% url 'search_movies' %}" method="get">
+                     <select name="category" style="workonwidth:200px;height:40px;">
+                             <option value="" selected>All Categories</option>
+                                {% for category in categories %}
+                                    <option value="{{ category }}">{{ category }}</option>
+                                 {% endfor %}
+                     </select>
+                       <button type="submit" class="btn" style="background-color:#EE5007;color:white;width:80px;height:40px;">Search</button>
+                     </form>
+                 {% if category %}
+                        <h2>{{ category }}</h2>
+                    {% endif %}
+
+                {% endif %}
+
+                     {% if no_movies_added %}
+                        <p>No movies added yet.</p>
+                    <a href="{% url 'add_movie' %}">Add Movie</a>
+                    {% else %}
+                    <div class="card-container">
+                        {% for movie in movies %}
+                            <div class="col-md-2 col-sm-5 col-lg-2" >
+                                <div class="card-sl">
+                                     <div class="card-image">
+                                        <img src="{{ movie.poster.url }}" alt="{{ movie.title }}"/>
+                                    </div>
+                                     <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
+                                        <div class="card-heading">{{ movie.title }}
+                                        </div>
+                                     <a href="{% url 'movie_details' movie.id %}" class="card-button">Details</a>
+
+                                </div>
+                             </div>
+                        {% endfor %}
+                      </div>
+
+                 {% endif %}
+
+
+
+</div>
+
+
+
+
+    </body>
+</html>
